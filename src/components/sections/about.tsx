@@ -1,0 +1,147 @@
+import type { Dictionary } from "@/i18n/get-dictionary";
+import type { SiteSettings } from "@/sanity/types";
+import { site } from "@/lib/site";
+import { pad } from "@/lib/utils";
+import { Counter } from "@/components/motion/counter";
+import { Parallax } from "@/components/motion/parallax";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
+import { TextReveal } from "@/components/motion/text-reveal";
+import { SanityImage } from "@/components/media/sanity-image";
+import { RichText } from "@/components/media/rich-text";
+
+type AboutProps = { dict: Dictionary["about"]; settings: SiteSettings | null };
+
+export function About({ dict, settings }: AboutProps) {
+  const stats = settings?.stats?.length
+    ? settings.stats.map((s) => ({ value: s.value, prefix: s.prefix, suffix: s.suffix, label: s.label ?? "" }))
+    : dict.stats;
+
+  return (
+    <section id="about" aria-labelledby="about-title" className="section">
+      <div className="container">
+        <p className="label mb-16 flex items-center gap-3">
+          <span className="text-accent">01</span>
+          <span aria-hidden className="h-px w-8 bg-border" />
+          {dict.eyebrow}
+        </p>
+
+        <div className="grid gap-16 lg:grid-cols-12 lg:gap-10">
+          {/* Portrait */}
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-28">
+              <Reveal>
+                <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border bg-card">
+                  {settings?.portrait?.asset ? (
+                    <Parallax className="h-full" offset={8} scale>
+                      <SanityImage
+                        image={settings.portrait}
+                        alt={settings.portrait.alt || dict.portraitAlt}
+                        sizes="(min-width: 1024px) 40vw, 100vw"
+                        className="grayscale transition duration-1000 hover:grayscale-0"
+                      />
+                    </Parallax>
+                  ) : (
+                    <div aria-hidden className="absolute inset-0 flex items-end bg-[radial-gradient(circle_at_30%_20%,rgb(var(--secondary)/0.35),transparent_50%),radial-gradient(circle_at_80%_80%,rgb(var(--accent)/0.25),transparent_50%)] p-8">
+                      <span className="font-display text-[clamp(6rem,18vw,14rem)] font-semibold leading-none tracking-tighter text-foreground/90">
+                        AM
+                      </span>
+                    </div>
+                  )}
+                  <div className="absolute left-4 top-4 rounded-full border border-foreground/10 bg-background/60 px-3 py-1.5 font-display text-[0.65rem] uppercase tracking-[0.2em] backdrop-blur">
+                    {site.location.city} — {site.location.region}
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+          </div>
+
+          {/* Story */}
+          <div className="lg:col-span-7 lg:pl-10">
+            <TextReveal
+              as="h2"
+              text={settings?.aboutHeading || dict.heading}
+              className="font-display text-display-md font-medium"
+              stagger={0.03}
+            />
+            <span id="about-title" className="sr-only">
+              {dict.eyebrow}
+            </span>
+
+            <Reveal className="mt-10 max-w-2xl space-y-6 text-lg leading-relaxed text-foreground/70">
+              {settings?.aboutBody?.length ? (
+                <RichText value={settings.aboutBody} />
+              ) : (
+                dict.body.map((paragraph) => <p key={paragraph.slice(0, 24)}>{paragraph}</p>)
+              )}
+            </Reveal>
+
+            {/* Counters */}
+            <dl className="mt-16 grid grid-cols-3 gap-4 border-y border-border py-10">
+              {stats.map((stat, i) => (
+                <div key={`${stat.label}-${i}`} className="flex flex-col gap-2">
+                  <dt className="order-2 text-xs text-muted-foreground md:text-sm">{stat.label}</dt>
+                  <dd className="order-1 font-display text-[clamp(2.5rem,6vw,5rem)] font-medium leading-none tracking-tight">
+                    <Counter value={stat.value} prefix={stat.prefix} suffix={stat.suffix} />
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            {/* Pillars */}
+            <div className="mt-16">
+              <p className="label mb-6">{dict.pillarsTitle}</p>
+              <Stagger className="divide-y divide-border border-y border-border">
+                {dict.pillars.map((pillar, i) => (
+                  <StaggerItem key={pillar.title} className="group grid grid-cols-12 items-baseline gap-4 py-5">
+                    <span className="col-span-2 font-display text-xs text-muted-foreground md:col-span-1">{pad(i + 1)}</span>
+                    <h3 className="col-span-10 font-display text-2xl font-medium tracking-tight transition-colors duration-500 group-hover:text-accent md:col-span-5 md:text-3xl">
+                      {pillar.title}
+                    </h3>
+                    <p className="col-span-10 col-start-3 text-sm text-muted-foreground md:col-span-6 md:col-start-auto">
+                      {pillar.text}
+                    </p>
+                  </StaggerItem>
+                ))}
+              </Stagger>
+            </div>
+
+            {/* Education + tools */}
+            <div className="mt-16 grid gap-10 sm:grid-cols-3">
+              <Reveal>
+                <p className="label mb-4">{dict.education}</p>
+                <ul className="space-y-3">
+                  {dict.educationItems.map((item) => (
+                    <li key={item.title}>
+                      <p className="font-display text-lg leading-tight">{item.title}</p>
+                      <p className="text-sm text-muted-foreground">{item.school}</p>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+              <Reveal delay={0.1}>
+                <p className="label mb-4">{dict.tools}</p>
+                <ul className="flex flex-wrap gap-2">
+                  {site.tools.map((tool) => (
+                    <li key={tool} className="rounded-full border border-border px-3 py-1 text-xs text-foreground/75">
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+              <Reveal delay={0.2}>
+                <p className="label mb-4">{dict.ai}</p>
+                <ul className="flex flex-wrap gap-2">
+                  {site.aiTools.map((tool) => (
+                    <li key={tool} className="rounded-full border border-accent/25 bg-accent/5 px-3 py-1 text-xs text-accent">
+                      {tool}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

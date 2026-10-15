@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 5 5 5; /* #050505 */
+    --card: 15 15 15; /* #0f0f0f */
+    --border: 32 32 32; /* #202020 */
+    --foreground: 255 255 255; /* #FFFFFF */
+    --muted: 136 136 136; /* #888888 */
+    --accent: 110 231 255; /* #6EE7FF */
+    --secondary: 139 92 246; /* #8B5CF6 */
+    --radius: 0.75rem;
+    --header-height: 5rem;
+    --project-color: rgb(var(--accent));
+    color-scheme: dark;
+  }
+
+  @media (prefers-contrast: more) {
+    :root {
+      --muted: 190 190 190;
+      --border: 90 90 90;
+    }
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-padding-top: var(--header-height);
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground;
+    font-feature-settings: "ss01", "cv11";
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    font-feature-settings: "ss01", "ss02";
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: rgb(var(--accent));
+    color: rgb(var(--background));
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--accent));
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  html.is-loading,
+  html.is-loading body {
+    overflow: hidden;
+  }
+
+  /* Preloader only once per session (flag set before paint) */
+  html[data-preloaded] [data-preloader] {
+    display: none;
+  }
+}
+
+@layer components {
+  .label {
+    @apply font-display text-[0.7rem] font-medium uppercase tracking-label text-muted-foreground;
+  }
+
+  .section {
+    @apply relative py-24 md:py-36;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-border;
+  }
+
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgb(var(--foreground) / 0.35);
+  }
+
+  .text-gradient {
+    background: linear-gradient(110deg, rgb(var(--foreground)) 30%, rgb(var(--accent)) 60%, rgb(var(--secondary)) 90%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+    background-position: 0% 100%;
+  }
+
+  .grain {
+    pointer-events: none;
+    position: fixed;
+    inset: -50%;
+    z-index: 60;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  .mask-fade-x {
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  }
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+/* Portable Text */
+.prose-am {
+  @apply max-w-none text-[1.075rem] leading-[1.75] text-foreground/80;
+}
+.prose-am > * + * {
+  @apply mt-6;
+}
+.prose-am h2 {
+  @apply mt-16 font-display text-display-sm text-foreground;
+}
+.prose-am h3 {
+  @apply mt-12 font-display text-2xl text-foreground;
+}
+.prose-am h4 {
+  @apply mt-10 font-display text-xl text-foreground;
+}
+.prose-am .lead {
+  @apply font-display text-2xl leading-snug text-foreground md:text-3xl;
+}
+.prose-am a {
+  @apply text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent;
+}
+.prose-am strong {
+  @apply font-semibold text-foreground;
+}
+.prose-am mark {
+  @apply rounded bg-accent/15 px-1 text-accent;
+}
+.prose-am code {
+  @apply rounded bg-card px-1.5 py-0.5 font-mono text-sm text-accent;
+}
+.prose-am ul {
+  @apply list-none space-y-3 pl-0;
+}
+.prose-am ul > li {
+  @apply relative pl-6;
+}
+.prose-am ul > li::before {
+  content: "";
+  @apply absolute left-0 top-[0.8em] h-px w-3 bg-accent;
+}
+.prose-am ol {
+  @apply list-decimal space-y-3 pl-6 marker:text-muted-foreground;
+}
+.prose-am blockquote {
+  @apply border-l border-accent pl-6 font-display text-2xl leading-snug text-foreground;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
