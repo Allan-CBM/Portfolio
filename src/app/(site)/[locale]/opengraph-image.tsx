@@ -28,13 +28,14 @@ export default async function OpengraphImage({ params }: { params: Promise<{ loc
             "radial-gradient(circle at 85% 20%, rgba(139,92,246,0.35), transparent 45%), radial-gradient(circle at 15% 90%, rgba(110,231,255,0.25), transparent 45%)",
         }}
       >
-        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 22, letterSpacing: 6, color: "#888888" }}>
-          <span>{dict.hero.roles.join("  ·  ").toUpperCase()}</span>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 18, letterSpacing: 4, color: "#888888" }}>
+          <span>{dict.hero.roles.join(" · ").toUpperCase()}</span>
           <span style={{ color: "#6EE7FF" }}>AM</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", fontSize: 150, fontWeight: 700, lineHeight: 0.88, letterSpacing: -6 }}>
           <span>ALLAN</span>
-          <span style={{ color: "transparent", WebkitTextStroke: "2px rgba(255,255,255,0.6)" }}>MARTINS</span>
+          {/* next/og (Satori) has no text-stroke support, so the outline style is approximated with a muted fill. */}
+          <span style={{ color: "rgba(255,255,255,0.38)" }}>MARTINS</span>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 26, color: "#bbbbbb" }}>
           <span>{dict.hero.headline.replace(/\n/g, " ")}</span>
