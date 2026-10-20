@@ -22,6 +22,7 @@ import { Footer } from "@/components/layout/footer";
 import { PreviewBar } from "@/components/layout/preview-bar";
 import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { Cursor } from "@/components/motion/cursor";
+import { Analytics } from "@vercel/analytics/next";
 
 type LayoutProps = { children: React.ReactNode; params: Promise<{ locale: string }> };
 
@@ -101,6 +102,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
             <PreviewBar label={dict.preview.active} exitLabel={dict.preview.exit} />
           </>
         )}
+        <Analytics />
       </body>
     </html>
   );
