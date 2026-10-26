@@ -5,6 +5,7 @@ import type { Dictionary } from "@/i18n/get-dictionary";
 import type { Locale } from "@/i18n/config";
 import type { ContactLinks } from "@/lib/site";
 import { site } from "@/lib/site";
+import { ExternalLink } from "@/components/ui/external-link";
 import { Logo } from "./logo";
 import { BackToTop } from "./back-to-top";
 
@@ -15,11 +16,10 @@ export function Footer({ locale, dict, links }: { locale: Locale; dict: Dictiona
     { href: `${home}#about`, label: dict.nav.about },
     { href: `${home}#services`, label: dict.nav.services },
   ];
-  const social = [
-    { href: links.behance, label: "Behance" },
-    { href: links.linkedin, label: "LinkedIn" },
-    ...(links.email ? [{ href: `mailto:${links.email}`, label: dict.contact.email }] : []),
-  ];
+  const linkClass = "group inline-flex items-center gap-1 text-sm text-foreground/75 transition-colors hover:text-foreground";
+  const arrow = (
+    <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
+  );
 
   return (
     <footer className="relative border-t border-border">
@@ -45,18 +45,19 @@ export function Footer({ locale, dict, links }: { locale: Locale; dict: Dictiona
         <nav aria-label={dict.footer.social} className="md:col-span-3">
           <p className="label mb-5">{dict.footer.social}</p>
           <ul className="space-y-2">
-            {social.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className="group inline-flex items-center gap-1 text-sm text-foreground/75 transition-colors hover:text-foreground"
-                >
-                  {item.label}
-                  <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden />
-                </a>
-              </li>
-            ))}
+            <li>
+              {/* Behance goes through the leaving-site warning; LinkedIn never does. */}
+              <ExternalLink href={links.behance} className={linkClass}>
+                Behance
+                {arrow}
+              </ExternalLink>
+            </li>
+            <li>
+              <a href={links.linkedin} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                LinkedIn
+                {arrow}
+              </a>
+            </li>
           </ul>
         </nav>
         <div className="flex md:col-span-1 md:justify-end">

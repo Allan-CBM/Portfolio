@@ -131,6 +131,13 @@ export const pt: Dictionary = {
     navigation: "Navegação",
     social: "Redes",
   },
+  leaveSite: {
+    title: "Você está saindo do site",
+    text: "Este link abre o Behance em uma nova aba. Deseja continuar?",
+    stay: "Ficar aqui",
+    continue: "Continuar para o Behance",
+    dontAsk: "Não perguntar novamente",
+  },
   notFound: {
     title: "Perdido\nno canvas.",
     text: "A página que você procura não existe ou foi movida.",

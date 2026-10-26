@@ -129,6 +129,13 @@ export const en = {
     navigation: "Navigation",
     social: "Social",
   },
+  leaveSite: {
+    title: "You're about to leave this site",
+    text: "This link opens Behance in a new tab. Do you want to continue?",
+    stay: "Stay here",
+    continue: "Continue to Behance",
+    dontAsk: "Don't ask me again",
+  },
   notFound: {
     title: "Lost in\nthe canvas.",
     text: "The page you're looking for doesn't exist or has moved.",

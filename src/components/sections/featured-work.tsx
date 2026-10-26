@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import type { Dictionary } from "@/i18n/get-dictionary";
 import { SectionHeading } from "@/components/section-heading";
 import { Reveal } from "@/components/motion/reveal";
+import { ExternalLink } from "@/components/ui/external-link";
 
 type FeaturedWorkProps = {
   dict: Dictionary["work"];
@@ -31,10 +32,8 @@ export function FeaturedWork({ dict, behanceUrl }: FeaturedWorkProps) {
         <SectionHeading index="02" eyebrow={dict.eyebrow} title={dict.heading} />
 
         <Reveal className="mt-20">
-          <a
+          <ExternalLink
             href={behanceUrl}
-            target="_blank"
-            rel="noopener noreferrer"
             data-cursor="Behance"
             className="group relative block aspect-[2/3] overflow-hidden rounded-2xl border border-border bg-[radial-gradient(ellipse_at_80%_30%,rgb(var(--secondary)/0.35),transparent_60%),radial-gradient(ellipse_at_20%_90%,rgb(var(--accent)/0.2),transparent_55%)] bg-card sm:aspect-[4/3] md:aspect-video xl:aspect-[21/10]"
           >
@@ -71,7 +70,7 @@ export function FeaturedWork({ dict, behanceUrl }: FeaturedWorkProps) {
                 />
               </span>
             </div>
-          </a>
+          </ExternalLink>
         </Reveal>
       </div>
     </section>

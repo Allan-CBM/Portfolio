@@ -8,6 +8,7 @@ import { getDictionary } from "@/i18n/get-dictionary";
 import { display, sans } from "@/lib/fonts";
 import { contactLinks, site, siteUrl } from "@/lib/site";
 import { AppProvider } from "@/components/providers/app-provider";
+import { LeaveSiteProvider } from "@/components/providers/leave-site-provider";
 import { Preloader } from "@/components/layout/preloader";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
@@ -68,14 +69,16 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           {dict.nav.skip}
         </a>
         <AppProvider>
-          <Preloader label={dict.preloader.loading} />
-          <ScrollProgress />
-          <Navbar locale={locale} dict={dict.nav} />
-          <main id="main" tabIndex={-1} className="outline-none">
-            {children}
-          </main>
-          <Footer locale={locale} dict={dict} links={contactLinks} />
-          <Cursor />
+          <LeaveSiteProvider dict={dict.leaveSite}>
+            <Preloader label={dict.preloader.loading} />
+            <ScrollProgress />
+            <Navbar locale={locale} dict={dict.nav} />
+            <main id="main" tabIndex={-1} className="outline-none">
+              {children}
+            </main>
+            <Footer locale={locale} dict={dict} links={contactLinks} />
+            <Cursor />
+          </LeaveSiteProvider>
         </AppProvider>
         <div aria-hidden className="grain animate-grain" />
       </body>

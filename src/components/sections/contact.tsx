@@ -9,6 +9,7 @@ import type { ContactLinks } from "@/lib/site";
 import { TextReveal } from "@/components/motion/text-reveal";
 import { Magnetic } from "@/components/motion/magnetic";
 import { Reveal } from "@/components/motion/reveal";
+import { ExternalLink } from "@/components/ui/external-link";
 
 export function Contact({ dict, links }: { dict: Dictionary["contact"]; links: ContactLinks }) {
   const [copied, setCopied] = useState(false);
@@ -26,8 +27,14 @@ export function Contact({ dict, links }: { dict: Dictionary["contact"]; links: C
   const channels = [
     ...(links.email ? [{ label: dict.email, value: links.email, href: `mailto:${links.email}` }] : []),
     { label: "LinkedIn", value: "/in/allancarlosbm", href: links.linkedin },
-    { label: "Behance", value: "/AllanCarlosBM", href: links.behance },
+    // Behance is the only channel that shows the leaving-site warning.
+    { label: "Behance", value: "/AllanCarlosBM", href: links.behance, warn: true },
   ];
+
+  const channelClass = "group inline-flex items-center gap-2 font-display text-lg transition-colors hover:text-accent md:text-2xl";
+  const channelArrow = (
+    <ArrowUpRight className="size-5 transition-transform duration-500 ease-expo group-hover:-translate-y-1 group-hover:translate-x-1" aria-hidden />
+  );
 
   return (
     <section id="contact" aria-labelledby="contact-title" className="section relative overflow-hidden">
@@ -86,14 +93,21 @@ export function Contact({ dict, links }: { dict: Dictionary["contact"]; links: C
               <li key={channel.label} className="flex items-center justify-between gap-4 border-b border-border py-5">
                 <span className="label">{channel.label}</span>
                 <span className="flex items-center gap-3">
-                  <a
-                    href={channel.href}
-                    {...(channel.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className="group inline-flex items-center gap-2 font-display text-lg transition-colors hover:text-accent md:text-2xl"
-                  >
-                    {channel.value}
-                    <ArrowUpRight className="size-5 transition-transform duration-500 ease-expo group-hover:-translate-y-1 group-hover:translate-x-1" aria-hidden />
-                  </a>
+                  {"warn" in channel ? (
+                    <ExternalLink href={channel.href} className={channelClass}>
+                      {channel.value}
+                      {channelArrow}
+                    </ExternalLink>
+                  ) : (
+                    <a
+                      href={channel.href}
+                      {...(channel.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      className={channelClass}
+                    >
+                      {channel.value}
+                      {channelArrow}
+                    </a>
+                  )}
                   {channel.href.startsWith("mailto:") && (
                     <button
                       type="button"
