@@ -2,7 +2,7 @@
   "name": "allan-martins-portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Allan Martins — creative portfolio platform. Next.js 15 + Sanity Studio v3.",
+  "description": "Allan Martins — creative portfolio. Next.js 15, content in local files.",
   "engines": {
     "node": ">=20.11"
   },
@@ -11,22 +11,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit",
-    "sanity": "sanity",
-    "studio:deploy": "sanity deploy",
-    "studio:cors": "sanity cors add http://localhost:3000 --credentials",
-    "seed": "sanity dataset import sanity/seed/seed.ndjson production --missing"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
-    "@portabletext/react": "^3.2.1",
     "@radix-ui/react-slot": "^1.2.0",
     "@react-three/drei": "^10.0.6",
     "@react-three/fiber": "^9.1.2",
-    "@sanity/icons": "^3.7.0",
-    "@sanity/image-url": "^1.1.0",
-    "@sanity/ui": "^2.15.13",
-    "@sanity/vision": "^3.88.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.9.2",
@@ -34,12 +25,8 @@
     "lenis": "^1.3.1",
     "lucide-react": "^0.503.0",
     "next": "^15.3.1",
-    "next-sanity": "^9.12.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "sanity": "^3.88.0",
-    "server-only": "^0.0.1",
-    "styled-components": "^6.1.17",
     "tailwind-merge": "^3.2.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.176.0"

@@ -4,8 +4,8 @@ const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
-  // Allows Sanity Presentation (embedded or hosted on *.sanity.studio) to frame the site for live preview.
-  { key: "Content-Security-Policy", value: "frame-ancestors 'self' https://*.sanity.studio https://*.sanity.io" },
+  { key: "Content-Security-Policy", value: "frame-ancestors 'self'" },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
 ];
 
 const nextConfig: NextConfig = {
@@ -13,15 +13,14 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
-    remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io" }],
   },
   experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion", "@react-three/drei", "@sanity/icons"],
+    optimizePackageImports: ["lucide-react", "framer-motion", "@react-three/drei"],
   },
   async headers() {
     return [
       {
-        source: "/((?!studio).*)",
+        source: "/(.*)",
         headers: securityHeaders,
       },
     ];

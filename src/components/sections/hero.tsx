@@ -13,14 +13,7 @@ import { LocalTime } from "./local-time";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
-type HeroProps = {
-  dict: Dictionary["hero"];
-  headline?: string | null;
-  subline?: string | null;
-  availability?: string | null;
-};
-
-export function Hero({ dict, headline, subline, availability }: HeroProps) {
+export function Hero({ dict }: { dict: Dictionary["hero"] }) {
   const { ready, scrollTo } = useApp();
   const show = (delay: number) => ({
     initial: { opacity: 0, y: 24 },
@@ -50,7 +43,7 @@ export function Hero({ dict, headline, subline, availability }: HeroProps) {
 
           <TextReveal
             as="h1"
-            text={headline || dict.headline}
+            text={dict.headline}
             waitForIntro
             delay={0.15}
             stagger={0.05}
@@ -62,7 +55,7 @@ export function Hero({ dict, headline, subline, availability }: HeroProps) {
           </span>
 
           <motion.p {...show(0.7)} className="mt-10 max-w-md text-base text-muted-foreground md:text-lg">
-            {subline || dict.sub}
+            {dict.sub}
           </motion.p>
 
           <motion.div {...show(0.85)} className="mt-10 flex flex-wrap items-center gap-4">
@@ -97,7 +90,7 @@ export function Hero({ dict, headline, subline, availability }: HeroProps) {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
             <span className="relative inline-flex size-2 rounded-full bg-accent" />
           </span>
-          {availability || dict.available}
+          {dict.available}
         </p>
         <p className="text-muted-foreground md:text-center">{dict.basedIn}</p>
         <p className="hidden text-muted-foreground md:block md:text-center">

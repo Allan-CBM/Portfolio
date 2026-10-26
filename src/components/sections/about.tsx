@@ -1,24 +1,15 @@
 import Image from "next/image";
 
 import type { Dictionary } from "@/i18n/get-dictionary";
-import type { SiteSettings } from "@/sanity/types";
 import { site } from "@/lib/site";
 import { pad } from "@/lib/utils";
 import { Counter } from "@/components/motion/counter";
 import { Parallax } from "@/components/motion/parallax";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
-import { SanityImage } from "@/components/media/sanity-image";
-import { RichText } from "@/components/media/rich-text";
 import { ExpandableText } from "@/components/ui/expandable-text";
 
-type AboutProps = { dict: Dictionary["about"]; settings: SiteSettings | null };
-
-export function About({ dict, settings }: AboutProps) {
-  const stats = settings?.stats?.length
-    ? settings.stats.map((s) => ({ value: s.value, prefix: s.prefix, suffix: s.suffix, label: s.label ?? "" }))
-    : dict.stats;
-
+export function About({ dict }: { dict: Dictionary["about"] }) {
   return (
     <section id="about" aria-labelledby="about-title" className="section">
       <div className="container">
@@ -34,30 +25,17 @@ export function About({ dict, settings }: AboutProps) {
             <div className="lg:sticky lg:top-28">
               <Reveal>
                 <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border bg-card">
-                  {settings?.portrait?.asset ? (
-                    <Parallax className="h-full" offset={8} scale>
-                      <SanityImage
-                        image={settings.portrait}
-                        alt={settings.portrait.alt || dict.portraitAlt}
-                        sizes="(min-width: 1024px) 40vw, 100vw"
-                        className="grayscale transition duration-1000 hover:grayscale-0"
-                      />
-                    </Parallax>
-                  ) : (
-                    <>
-                      <Parallax className="h-full" offset={6} scale>
-                        <Image
-                          src="/images/allan.jpg"
-                          alt={dict.portraitAlt}
-                          fill
-                          priority
-                          sizes="(min-width: 1024px) 40vw, 100vw"
-                          className="object-cover object-top"
-                        />
-                      </Parallax>
-                      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/60 to-transparent" />
-                    </>
-                  )}
+                  <Parallax className="h-full" offset={6} scale>
+                    <Image
+                      src="/images/allan.jpg"
+                      alt={dict.portraitAlt}
+                      fill
+                      priority
+                      sizes="(min-width: 1024px) 40vw, 100vw"
+                      className="object-cover object-top"
+                    />
+                  </Parallax>
+                  <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/60 to-transparent" />
                   <div className="absolute left-4 top-4 rounded-full border border-foreground/10 bg-background/60 px-3 py-1.5 font-display text-[0.65rem] uppercase tracking-[0.2em] backdrop-blur">
                     {site.location.city} — {site.location.region}
                   </div>
@@ -70,7 +48,7 @@ export function About({ dict, settings }: AboutProps) {
           <div className="lg:col-span-7 lg:pl-10">
             <TextReveal
               as="h2"
-              text={settings?.aboutHeading || dict.heading}
+              text={dict.heading}
               className="font-display text-display-md font-medium"
               stagger={0.03}
             />
@@ -79,18 +57,12 @@ export function About({ dict, settings }: AboutProps) {
             </span>
 
             <Reveal className="mt-10 max-w-2xl text-lg leading-relaxed text-foreground/70">
-              {settings?.aboutBody?.length ? (
-                <div className="space-y-6">
-                  <RichText value={settings.aboutBody} />
-                </div>
-              ) : (
-                <ExpandableText paragraphs={dict.body} moreLabel={dict.readMore} lessLabel={dict.readLess} />
-              )}
+              <ExpandableText paragraphs={dict.body} moreLabel={dict.readMore} lessLabel={dict.readLess} />
             </Reveal>
 
             {/* Counters */}
             <dl className="mt-16 grid grid-cols-3 gap-4 border-y border-border py-10">
-              {stats.map((stat, i) => (
+              {dict.stats.map((stat, i) => (
                 <div key={`${stat.label}-${i}`} className="flex flex-col gap-2">
                   <dt className="order-2 text-xs text-muted-foreground md:text-sm">{stat.label}</dt>
                   <dd className="order-1 font-display text-[clamp(2.5rem,6vw,5rem)] font-medium leading-none tracking-tight">

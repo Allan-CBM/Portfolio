@@ -1,19 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 import type { Dictionary } from "@/i18n/get-dictionary";
-import type { Service } from "@/sanity/types";
 import { SectionHeading } from "@/components/section-heading";
 import { cn, pad } from "@/lib/utils";
 
-type ServicesProps = { dict: Dictionary["services"]; items: Service[] };
-
 const ease = [0.16, 1, 0.3, 1] as const;
 
-export function Services({ dict, items }: ServicesProps) {
+export function Services({ dict }: { dict: Dictionary["services"] }) {
   const [active, setActive] = useState<number | null>(null);
 
   return (
@@ -22,10 +19,10 @@ export function Services({ dict, items }: ServicesProps) {
         <SectionHeading index="04" eyebrow={dict.eyebrow} title={dict.heading} />
 
         <ul className="mt-20 border-t border-border" onMouseLeave={() => setActive(null)}>
-          {items.map((service, i) => {
+          {dict.items.map((service, i) => {
             const isActive = active === i;
             return (
-              <li key={service._id} className="relative border-b border-border">
+              <li key={service.title} className="relative border-b border-border">
                 <motion.span
                   aria-hidden
                   className="absolute inset-0 origin-bottom bg-foreground"
@@ -60,23 +57,6 @@ export function Services({ dict, items }: ServicesProps) {
                     <p className={cn("text-sm transition-colors duration-500", isActive ? "text-background/70" : "text-muted-foreground")}>
                       {service.description}
                     </p>
-                    <AnimatePresence>
-                      {isActive && service.deliverables?.length ? (
-                        <motion.ul
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.5, ease }}
-                          className="mt-3 flex flex-wrap gap-2 overflow-hidden"
-                        >
-                          {service.deliverables.map((d) => (
-                            <li key={d} className="rounded-full border border-background/20 px-2.5 py-0.5 text-xs text-background/80">
-                              {d}
-                            </li>
-                          ))}
-                        </motion.ul>
-                      ) : null}
-                    </AnimatePresence>
                   </div>
                   <ArrowUpRight
                     aria-hidden

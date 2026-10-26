@@ -12,15 +12,12 @@ export function Footer({ locale, dict, links }: { locale: Locale; dict: Dictiona
   const home = `/${locale}`;
   const nav = [
     { href: `${home}#work`, label: dict.nav.work },
-    { href: `${home}/projects`, label: dict.work.indexHeading },
     { href: `${home}#about`, label: dict.nav.about },
     { href: `${home}#services`, label: dict.nav.services },
-    { href: `${home}/journal`, label: dict.nav.journal },
   ];
   const social = [
     { href: links.behance, label: "Behance" },
     { href: links.linkedin, label: "LinkedIn" },
-    ...(links.instagram ? [{ href: links.instagram, label: "Instagram" }] : []),
     ...(links.email ? [{ href: `mailto:${links.email}`, label: dict.contact.email }] : []),
   ];
 

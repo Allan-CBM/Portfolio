@@ -2,31 +2,31 @@
 
 import { useRef, useState } from "react";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
-import { ArrowUpRight, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 
 import type { Dictionary } from "@/i18n/get-dictionary";
 import type { Locale } from "@/i18n/config";
-import type { Experience as ExperienceType } from "@/sanity/types";
+import type { ExperienceEntry } from "@/content/experience";
 import { SectionHeading } from "@/components/section-heading";
 import { cn, formatMonthYear, pad } from "@/lib/utils";
 
 type ExperienceProps = {
   locale: Locale;
   dict: Dictionary["experience"];
-  items: ExperienceType[];
+  items: ExperienceEntry[];
 };
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
 export function Experience({ locale, dict, items }: ExperienceProps) {
   const list = useRef<HTMLOListElement>(null);
-  const [openId, setOpenId] = useState<string | null>(items[0]?._id ?? null);
+  const [openId, setOpenId] = useState<string | null>(items[0]?.id ?? null);
   const { scrollYProgress } = useScroll({ target: list, offset: ["start 75%", "end 60%"] });
   const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 25 });
 
-  const period = (item: ExperienceType) => {
-    const start = formatMonthYear(item.startDate, locale);
-    const end = item.current ? dict.present : formatMonthYear(item.endDate, locale);
+  const period = (item: ExperienceEntry) => {
+    const start = formatMonthYear(item.start, locale);
+    const end = formatMonthYear(item.end, locale);
     return [start, end].filter(Boolean).join(" — ");
   };
 
@@ -45,11 +45,12 @@ export function Experience({ locale, dict, items }: ExperienceProps) {
           />
 
           {items.map((item, i) => {
-            const open = openId === item._id;
-            const hasDetails = Boolean(item.description || item.highlights?.length || item.url);
-            const panelId = `exp-panel-${item._id}`;
+            const open = openId === item.id;
+            const description = item.intro?.[locale];
+            const hasDetails = Boolean(description || item.tools?.length);
+            const panelId = `exp-panel-${item.id}`;
             return (
-              <li key={item._id} className="relative pl-12 md:pl-20">
+              <li key={item.id} className="relative pl-12 md:pl-20">
                 <span
                   aria-hidden
                   className={cn(
@@ -60,7 +61,7 @@ export function Experience({ locale, dict, items }: ExperienceProps) {
                 <div className="border-b border-border py-7">
                   <button
                     type="button"
-                    onClick={() => setOpenId(open ? null : item._id)}
+                    onClick={() => setOpenId(open ? null : item.id)}
                     aria-expanded={hasDetails ? open : undefined}
                     aria-controls={hasDetails ? panelId : undefined}
                     disabled={!hasDetails}
@@ -78,8 +79,8 @@ export function Experience({ locale, dict, items }: ExperienceProps) {
                       </span>
                     </span>
                     <span className="col-span-8 text-sm text-muted-foreground md:col-span-3">
-                      {item.role}
-                      {item.location ? <span className="block text-foreground/40">{item.location}</span> : null}
+                      {item.role[locale]}
+                      <span className="block text-foreground/40">{item.location[locale]}</span>
                     </span>
                     <span className="col-span-4 flex items-center justify-end gap-4 text-right font-display text-sm text-muted-foreground md:col-span-2">
                       <span>{period(item)}</span>
@@ -105,27 +106,16 @@ export function Experience({ locale, dict, items }: ExperienceProps) {
                       >
                         <div className="grid grid-cols-12 gap-4 pt-6">
                           <div className="col-span-12 space-y-5 md:col-span-8 md:col-start-2">
-                            {item.description && <p className="max-w-2xl text-foreground/70">{item.description}</p>}
-                            {item.highlights?.length ? (
+                            {description && <p className="max-w-2xl text-foreground/70">{description}</p>}
+                            {item.tools?.length ? (
                               <ul className="flex flex-wrap gap-2">
-                                {item.highlights.map((highlight) => (
+                                {item.tools.map((highlight) => (
                                   <li key={highlight} className="rounded-full border border-border px-3 py-1 text-xs text-foreground/70">
                                     {highlight}
                                   </li>
                                 ))}
                               </ul>
                             ) : null}
-                            {item.url && (
-                              <a
-                                href={item.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1 text-sm text-accent hover:underline"
-                              >
-                                {new URL(item.url).hostname.replace(/^www\./, "")}
-                                <ArrowUpRight className="size-3.5" aria-hidden />
-                              </a>
-                            )}
                           </div>
                         </div>
                       </motion.div>

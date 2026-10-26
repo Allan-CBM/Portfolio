@@ -1,15 +1,10 @@
 import { Fragment } from "react";
 
 import type { Dictionary } from "@/i18n/get-dictionary";
-import type { SkillGroup } from "@/sanity/types";
 import { Marquee } from "@/components/motion/marquee";
 
-type SkillsProps = { dict: Dictionary["skills"]; groups?: SkillGroup[] | null };
-
-export function Skills({ dict, groups }: SkillsProps) {
-  const data = groups?.length
-    ? groups.map((group) => ({ title: group.title, items: group.items ?? [] }))
-    : dict.groups;
+export function Skills({ dict }: { dict: Dictionary["skills"] }) {
+  const data = dict.groups;
 
   return (
     <section aria-label={dict.eyebrow} className="relative overflow-hidden border-y border-border py-16 md:py-24">

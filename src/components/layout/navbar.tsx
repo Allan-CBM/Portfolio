@@ -30,7 +30,6 @@ export function Navbar({ locale, dict }: { locale: Locale; dict: Dictionary["nav
     { href: `${home}#work`, label: dict.work },
     { href: `${home}#about`, label: dict.about },
     { href: `${home}#services`, label: dict.services },
-    { href: `${home}/journal`, label: dict.journal },
     { href: `${home}#contact`, label: dict.contact },
   ];
 
