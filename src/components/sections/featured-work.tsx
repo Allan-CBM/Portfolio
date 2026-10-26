@@ -62,7 +62,7 @@ export function FeaturedWork({ dict, behanceUrl }: FeaturedWorkProps) {
                 {dict.behanceTitle}
               </h3>
               <p className="mt-4 text-sm leading-relaxed text-foreground/75 md:text-base">{dict.behanceText}</p>
-              <span className="mt-6 inline-flex h-12 items-center gap-2 rounded-full bg-foreground px-6 font-display text-sm font-medium text-background transition-colors duration-500 group-hover:bg-accent md:mt-8 group-focus-visible:bg-accent">
+              <span className="mt-6 inline-flex h-12 items-center gap-2 whitespace-nowrap rounded-full bg-foreground px-6 font-display text-sm font-medium text-background transition-colors duration-500 group-hover:bg-accent md:mt-8 group-focus-visible:bg-accent">
                 {dict.behanceCta}
                 <ArrowUpRight
                   aria-hidden
