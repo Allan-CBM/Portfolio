@@ -4,7 +4,7 @@ export const pt: Dictionary = {
   meta: {
     title: "Allan Martins — Designer Gráfico & de Produto",
     description:
-      "Designer Gráfico e de Produto em Florianópolis, Brasil, atuando na interseção entre criatividade, branding, tecnologia e estratégia de negócios.",
+      "Designer gráfico e de produção em Florianópolis, Brasil: identidade visual, materiais para eventos, arquivos prontos para impressão e conteúdo para redes sociais de marcas e campanhas.",
   },
   nav: {
     work: "Projetos",

@@ -1,6 +1,18 @@
 import { siteSettings } from "@/content/siteSettings";
 
-export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "");
+/**
+ * Absolute site URL for canonical links, Open Graph, the sitemap and JSON-LD.
+ * Order: NEXT_PUBLIC_SITE_URL, then the Vercel production domain, then the deployment URL, then localhost (dev).
+ */
+function resolveSiteUrl() {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL;
+  const production = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  const deployment = process.env.VERCEL_URL;
+  const url = explicit || (production && `https://${production}`) || (deployment && `https://${deployment}`) || "http://localhost:3000";
+  return url.replace(/\/$/, "");
+}
+
+export const siteUrl = resolveSiteUrl();
 
 export const site = {
   name: siteSettings.name,

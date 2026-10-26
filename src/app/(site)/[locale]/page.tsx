@@ -37,6 +37,7 @@ export default async function HomePage({ params }: PageProps) {
         "@id": `${siteUrl}/#person`,
         name: site.name,
         url: siteUrl,
+        image: `${siteUrl}/images/allan.jpg`,
         jobTitle: site.jobTitles.slice(0, 3).join(", "),
         description: dict.meta.description,
         address: {

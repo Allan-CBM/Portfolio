@@ -2,7 +2,7 @@ export const en = {
   meta: {
     title: "Allan Martins — Graphic & Product Designer",
     description:
-      "Graphic and Product Designer in Florianópolis, Brazil, working at the intersection of creativity, branding, technology and business strategy.",
+      "Graphic and production designer in Florianópolis, Brazil: visual identity, event materials, print-ready files and social media assets for brands and campaigns.",
   },
   nav: {
     work: "Work",

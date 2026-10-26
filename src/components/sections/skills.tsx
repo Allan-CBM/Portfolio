@@ -16,7 +16,8 @@ export function Skills({ dict }: { dict: Dictionary["skills"] }) {
           </li>
         ))}
       </ul>
-      <div aria-hidden className="flex flex-col gap-4 md:gap-6">
+      {/* Decorative copy of the list above (repeated by the marquee): kept out of search snippets. */}
+      <div aria-hidden data-nosnippet className="flex flex-col gap-4 md:gap-6">
         {data.map((group, row) => (
           <Marquee key={group.title} reverse={row % 2 === 1} duration={38 + row * 6}>
             <span className="flex items-center gap-8 pr-8 md:gap-12 md:pr-12">

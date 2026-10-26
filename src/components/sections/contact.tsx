@@ -66,7 +66,7 @@ export function Contact({ dict, links }: { dict: Dictionary["contact"]; links: C
                   <ArrowUpRight className="size-6 transition-transform duration-500 group-hover:rotate-45" aria-hidden />
                   {dict.cta}
                 </span>
-                <svg aria-hidden viewBox="0 0 200 200" className="absolute inset-2 animate-spin-slow opacity-40">
+                <svg aria-hidden data-nosnippet viewBox="0 0 200 200" className="absolute inset-2 animate-spin-slow opacity-40">
                   <defs>
                     <path id="cta-circle" d="M100,100 m-88,0 a88,88 0 1,1 176,0 a88,88 0 1,1 -176,0" />
                   </defs>

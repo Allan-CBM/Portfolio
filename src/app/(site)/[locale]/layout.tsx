@@ -39,7 +39,6 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
     applicationName: site.name,
     authors: [{ name: site.name, url: siteUrl }],
     creator: site.name,
-    keywords: [...site.jobTitles, "Portfolio", "Florianópolis", "Brand Identity", "UI Design", "AI-assisted design"],
     formatDetection: { telephone: false },
     robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
   };
