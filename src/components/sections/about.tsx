@@ -25,7 +25,8 @@ export function About({ dict }: { dict: Dictionary["about"] }) {
             <div className="lg:sticky lg:top-28">
               <Reveal>
                 <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-border bg-card">
-                  <Parallax className="h-full" offset={6} scale>
+                  {/* Small travel and no zoom: the photo has little headroom, so a larger parallax crops the hair. */}
+                  <Parallax className="h-full" offset={3} innerClassName="-inset-y-[4%]">
                     <Image
                       src="/images/allan.jpg"
                       alt={dict.portraitAlt}
@@ -36,7 +37,7 @@ export function About({ dict }: { dict: Dictionary["about"] }) {
                     />
                   </Parallax>
                   <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/60 to-transparent" />
-                  <div className="absolute left-4 top-4 rounded-full border border-foreground/10 bg-background/60 px-3 py-1.5 font-display text-[0.65rem] uppercase tracking-[0.2em] backdrop-blur">
+                  <div className="absolute bottom-4 left-4 rounded-full border border-foreground/10 bg-background/60 px-3 py-1.5 font-display text-[0.65rem] uppercase tracking-[0.2em] backdrop-blur">
                     {site.location.city} — {site.location.region}
                   </div>
                 </div>
