@@ -74,11 +74,11 @@ export const en = {
   skills: {
     eyebrow: "Capabilities",
     groups: [
-      { title: "Branding", items: ["Visual Identity", "Logo Design", "Brand Guidelines", "Naming Support", "Packaging"] },
-      { title: "Product Design", items: ["UI Design", "UX Flows", "Design Systems", "Prototyping", "Figma"] },
-      { title: "Social Media", items: ["Campaigns", "Content Systems", "Carousels", "Reels", "Art Direction"] },
-      { title: "Motion Design", items: ["After Effects", "Premiere", "Kinetic Type", "Video Editing", "CapCut"] },
-      { title: "AI Workflows", items: ["Midjourney", "Firefly", "Leonardo AI", "Sora", "ChatGPT"] },
+      { title: "Production Design", items: ["Print-Ready Files", "Large-Format", "Templates", "Format Adaptation", "Presentations"] },
+      { title: "Brand & Event Visuals", items: ["Visual Identity", "Logo Design", "Typography", "Brand Consistency", "Backdrops", "Banners", "Signage"] },
+      { title: "Social & Motion", items: ["Campaigns", "Instagram Marketing", "Motion Graphics", "Video Editing", "After Effects", "Premiere Pro"] },
+      { title: "Illustration & UI", items: ["Digital Illustration", "Digital Painting", "ZBrush", "User Interface Design", "Figma"] },
+      { title: "AI Workflows", items: ["ChatGPT", "Gemini", "Google AI Studio", "Midjourney", "Sora", "Firefly"] },
     ],
   },
   experience: {
@@ -96,7 +96,7 @@ export const en = {
       { title: "Motion Design", description: "Animated identities, kinetic typography and video that make brands move." },
       { title: "Presentation Design", description: "Pitch decks and keynotes that turn complex ideas into persuasive narratives." },
       { title: "Social Media Design", description: "Scalable content systems and campaigns built for attention and consistency." },
-      { title: "AI Assisted Creativity", description: "Generative workflows with Midjourney, Firefly and Sora to explore further, faster." },
+      { title: "AI Assisted Creativity", description: "Generative workflows with Midjourney, Firefly, Gemini and Sora to explore further, faster." },
       { title: "Creative Direction", description: "Concept, art direction and orchestration of teams for cohesive outcomes." },
     ],
   },

@@ -47,7 +47,7 @@ export default async function HomePage({ params }: PageProps) {
           addressCountry: site.location.country,
         },
         alumniOf: site.education.map((school) => ({ "@type": "CollegeOrUniversity", name: school.name })),
-        knowsAbout: [...dict.skills.groups.map((g) => g.title), ...site.tools, ...site.aiTools],
+        knowsAbout: [...new Set([...dict.skills.groups.map((g) => g.title), ...site.tools, ...site.aiTools])],
         sameAs: [links.behance, links.linkedin],
         ...(links.email ? { email: `mailto:${links.email}` } : {}),
       },

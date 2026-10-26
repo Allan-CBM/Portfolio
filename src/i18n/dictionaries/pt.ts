@@ -76,11 +76,11 @@ export const pt: Dictionary = {
   skills: {
     eyebrow: "Competências",
     groups: [
-      { title: "Branding", items: ["Identidade Visual", "Logotipos", "Manual de Marca", "Naming", "Embalagens"] },
-      { title: "Design de Produto", items: ["UI Design", "Fluxos UX", "Design Systems", "Prototipação", "Figma"] },
-      { title: "Social Media", items: ["Campanhas", "Sistemas de Conteúdo", "Carrosséis", "Reels", "Direção de Arte"] },
-      { title: "Motion Design", items: ["After Effects", "Premiere", "Tipografia Cinética", "Edição de Vídeo", "CapCut"] },
-      { title: "Fluxos com IA", items: ["Midjourney", "Firefly", "Leonardo AI", "Sora", "ChatGPT"] },
+      { title: "Design de Produção", items: ["Arquivos Prontos para Impressão", "Grandes Formatos", "Templates", "Adaptação de Formatos", "Apresentações"] },
+      { title: "Marca & Eventos", items: ["Identidade Visual", "Design de Logotipos", "Tipografia", "Consistência de Marca", "Backdrops", "Banners", "Sinalização"] },
+      { title: "Social & Motion", items: ["Campanhas", "Marketing no Instagram", "Motion Graphics", "Edição de Vídeo", "After Effects", "Premiere Pro"] },
+      { title: "Ilustração & UI", items: ["Ilustração Digital", "Pintura Digital", "ZBrush", "Design de Interface", "Figma"] },
+      { title: "Fluxos com IA", items: ["ChatGPT", "Gemini", "Google AI Studio", "Midjourney", "Sora", "Firefly"] },
     ],
   },
   experience: {
@@ -98,7 +98,7 @@ export const pt: Dictionary = {
       { title: "Motion Design", description: "Identidades animadas, tipografia cinética e vídeos que colocam marcas em movimento." },
       { title: "Design de Apresentações", description: "Pitch decks e keynotes que transformam ideias complexas em narrativas persuasivas." },
       { title: "Design para Social Media", description: "Sistemas de conteúdo e campanhas escaláveis, feitos para atenção e consistência." },
-      { title: "Criatividade com IA", description: "Fluxos generativos com Midjourney, Firefly e Sora para explorar mais longe, mais rápido." },
+      { title: "Criatividade com IA", description: "Fluxos generativos com Midjourney, Firefly, Gemini e Sora para explorar mais longe, mais rápido." },
       { title: "Direção Criativa", description: "Conceito, direção de arte e orquestração de equipes para resultados coesos." },
     ],
   },

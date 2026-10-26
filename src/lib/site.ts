@@ -22,7 +22,7 @@ export const site = {
   links: siteSettings.links,
   email: siteSettings.email || process.env.NEXT_PUBLIC_CONTACT_EMAIL || "",
   tools: ["Figma", "Illustrator", "Photoshop", "After Effects", "Premiere", "Canva", "CapCut", "ZBrush"],
-  aiTools: ["ChatGPT", "Firefly", "Midjourney", "Leonardo AI", "Sora"],
+  aiTools: ["ChatGPT", "Gemini", "Google AI Studio", "Midjourney", "Sora", "Firefly"],
   education: [
     { name: "UNISUL", course: "Graphic Design" },
     { name: "Universidade Anhembi Morumbi", course: "Product Design" },
