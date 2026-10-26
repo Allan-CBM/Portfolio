@@ -20,7 +20,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 
 export function Experience({ locale, dict, items }: ExperienceProps) {
   const list = useRef<HTMLOListElement>(null);
-  const [openId, setOpenId] = useState<string | null>(items[0]?.id ?? null);
+  const [openId, setOpenId] = useState<string | null>(null);
   const { scrollYProgress } = useScroll({ target: list, offset: ["start 75%", "end 60%"] });
   const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 25 });
 
@@ -46,8 +46,9 @@ export function Experience({ locale, dict, items }: ExperienceProps) {
 
           {items.map((item, i) => {
             const open = openId === item.id;
-            const description = item.intro?.[locale];
-            const hasDetails = Boolean(description || item.tools?.length);
+            const intro = item.intro?.[locale];
+            const bullets = item.bullets[locale];
+            const hasDetails = Boolean(intro || bullets.length || item.tools?.length);
             const panelId = `exp-panel-${item.id}`;
             return (
               <li key={item.id} className="relative pl-12 md:pl-20">
@@ -106,15 +107,28 @@ export function Experience({ locale, dict, items }: ExperienceProps) {
                       >
                         <div className="grid grid-cols-12 gap-4 pt-6">
                           <div className="col-span-12 space-y-5 md:col-span-8 md:col-start-2">
-                            {description && <p className="max-w-2xl text-foreground/70">{description}</p>}
-                            {item.tools?.length ? (
-                              <ul className="flex flex-wrap gap-2">
-                                {item.tools.map((highlight) => (
-                                  <li key={highlight} className="rounded-full border border-border px-3 py-1 text-xs text-foreground/70">
-                                    {highlight}
+                            {intro && <p className="max-w-2xl text-foreground/85">{intro}</p>}
+                            {bullets.length ? (
+                              <ul className="max-w-2xl space-y-3">
+                                {bullets.map((bullet) => (
+                                  <li key={bullet} className="relative pl-5 text-foreground/70">
+                                    <span aria-hidden className="absolute left-0 top-[0.7em] h-px w-2.5 bg-accent" />
+                                    {bullet}
                                   </li>
                                 ))}
                               </ul>
+                            ) : null}
+                            {item.tools?.length ? (
+                              <div>
+                                <p className="label mb-3">{dict.tools}</p>
+                                <ul className="flex flex-wrap gap-2">
+                                  {item.tools.map((tool) => (
+                                    <li key={tool} className="rounded-full border border-border px-3 py-1 text-xs text-foreground/70">
+                                      {tool}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
                             ) : null}
                           </div>
                         </div>

@@ -86,8 +86,7 @@ export const en = {
   experience: {
     eyebrow: "Experience",
     heading: "Where ideas\nbecame impact",
-    present: "Present",
-    toggle: "Show details",
+    tools: "Tools",
   },
   services: {
     eyebrow: "Services",

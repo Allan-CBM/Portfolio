@@ -88,8 +88,7 @@ export const pt: Dictionary = {
   experience: {
     eyebrow: "Experiência",
     heading: "Onde ideias\nviraram impacto",
-    present: "Atual",
-    toggle: "Mostrar detalhes",
+    tools: "Ferramentas",
   },
   services: {
     eyebrow: "Serviços",
