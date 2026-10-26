@@ -70,8 +70,10 @@ export const pt: Dictionary = {
   work: {
     eyebrow: "Trabalhos Selecionados",
     heading: "Projetos\nem Destaque",
-    empty: "Novos estudos de caso estão sendo selecionados. Enquanto isso, explore o arquivo completo no Behance.",
-    emptyCta: "Abrir Behance",
+    behanceTitle: "Veja meus trabalhos no Behance",
+    behanceText: "Meus projetos ficam no Behance, onde são mantidos em qualidade total.",
+    behanceCta: "Abrir Behance",
+    behanceAlt: "Prévia dos meus projetos no Behance",
   },
   skills: {
     eyebrow: "Competências",

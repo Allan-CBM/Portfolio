@@ -102,6 +102,61 @@
     color: transparent;
   }
 
+  /*
+   * "Liquid glass" panel: a CSS approximation (real refraction is not possible).
+   * Frosted, saturated backdrop + thin light border + inner highlight + soft glow.
+   */
+  .liquid-glass {
+    background: linear-gradient(140deg, rgb(var(--foreground) / 0.14), rgb(var(--foreground) / 0.04) 55%, rgb(var(--accent) / 0.06));
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgb(var(--foreground) / 0.18);
+    box-shadow:
+      inset 0 1px 0 rgb(var(--foreground) / 0.28),
+      inset 0 0 32px rgb(var(--foreground) / 0.05),
+      0 0 48px rgb(var(--accent) / 0.08),
+      0 24px 60px rgb(0 0 0 / 0.45);
+    transition:
+      background-color 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .group:hover .liquid-glass,
+  .group:focus-visible .liquid-glass {
+    background-color: rgb(var(--foreground) / 0.06);
+    border-color: rgb(var(--foreground) / 0.3);
+    box-shadow:
+      inset 0 1px 0 rgb(var(--foreground) / 0.4),
+      inset 0 0 32px rgb(var(--foreground) / 0.08),
+      0 0 64px rgb(var(--accent) / 0.16),
+      0 24px 60px rgb(0 0 0 / 0.45);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .liquid-glass {
+      transition: none;
+    }
+  }
+
+  /*
+   * Progressive blur: stacked backdrop-blur layers, each masked a little further from the edge,
+   * so the blur ramps up without a hard line. Bottom edge on mobile, left edge from md up.
+   * Each child sets --blur, --from and --to inline.
+   */
+  .progressive-blur > span {
+    --dir: to top;
+    position: absolute;
+    inset: 0;
+    -webkit-backdrop-filter: blur(var(--blur));
+    backdrop-filter: blur(var(--blur));
+    -webkit-mask-image: linear-gradient(var(--dir), #000 var(--from), transparent var(--to));
+    mask-image: linear-gradient(var(--dir), #000 var(--from), transparent var(--to));
+  }
+  @media (min-width: 768px) {
+    .progressive-blur > span {
+      --dir: to right;
+    }
+  }
+
   .link-underline {
     background-image: linear-gradient(currentColor, currentColor);
     background-size: 0% 1px;

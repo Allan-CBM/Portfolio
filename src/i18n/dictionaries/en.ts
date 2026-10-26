@@ -68,8 +68,10 @@ export const en = {
   work: {
     eyebrow: "Selected Work",
     heading: "Featured\nProjects",
-    empty: "New case studies are being curated. In the meantime, explore the full archive on Behance.",
-    emptyCta: "Open Behance",
+    behanceTitle: "See my work on Behance",
+    behanceText: "My projects live on Behance, where they're kept in full quality.",
+    behanceCta: "Open Behance",
+    behanceAlt: "Preview of my projects on Behance",
   },
   skills: {
     eyebrow: "Capabilities",
