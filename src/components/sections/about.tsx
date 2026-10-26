@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import type { Dictionary } from "@/i18n/get-dictionary";
 import type { SiteSettings } from "@/sanity/types";
 import { site } from "@/lib/site";
@@ -8,6 +10,7 @@ import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
 import { TextReveal } from "@/components/motion/text-reveal";
 import { SanityImage } from "@/components/media/sanity-image";
 import { RichText } from "@/components/media/rich-text";
+import { ExpandableText } from "@/components/ui/expandable-text";
 
 type AboutProps = { dict: Dictionary["about"]; settings: SiteSettings | null };
 
@@ -41,11 +44,19 @@ export function About({ dict, settings }: AboutProps) {
                       />
                     </Parallax>
                   ) : (
-                    <div aria-hidden className="absolute inset-0 flex items-end bg-[radial-gradient(circle_at_30%_20%,rgb(var(--secondary)/0.35),transparent_50%),radial-gradient(circle_at_80%_80%,rgb(var(--accent)/0.25),transparent_50%)] p-8">
-                      <span className="font-display text-[clamp(6rem,18vw,14rem)] font-semibold leading-none tracking-tighter text-foreground/90">
-                        AM
-                      </span>
-                    </div>
+                    <>
+                      <Parallax className="h-full" offset={6} scale>
+                        <Image
+                          src="/images/allan.jpg"
+                          alt={dict.portraitAlt}
+                          fill
+                          priority
+                          sizes="(min-width: 1024px) 40vw, 100vw"
+                          className="object-cover object-top"
+                        />
+                      </Parallax>
+                      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/60 to-transparent" />
+                    </>
                   )}
                   <div className="absolute left-4 top-4 rounded-full border border-foreground/10 bg-background/60 px-3 py-1.5 font-display text-[0.65rem] uppercase tracking-[0.2em] backdrop-blur">
                     {site.location.city} — {site.location.region}
@@ -67,11 +78,13 @@ export function About({ dict, settings }: AboutProps) {
               {dict.eyebrow}
             </span>
 
-            <Reveal className="mt-10 max-w-2xl space-y-6 text-lg leading-relaxed text-foreground/70">
+            <Reveal className="mt-10 max-w-2xl text-lg leading-relaxed text-foreground/70">
               {settings?.aboutBody?.length ? (
-                <RichText value={settings.aboutBody} />
+                <div className="space-y-6">
+                  <RichText value={settings.aboutBody} />
+                </div>
               ) : (
-                dict.body.map((paragraph) => <p key={paragraph.slice(0, 24)}>{paragraph}</p>)
+                <ExpandableText paragraphs={dict.body} moreLabel={dict.readMore} lessLabel={dict.readLess} />
               )}
             </Reveal>
 

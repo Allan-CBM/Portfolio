@@ -37,9 +37,15 @@ export const pt: Dictionary = {
     eyebrow: "Sobre",
     heading: "Um designer na interseção entre criatividade, tecnologia e negócios.",
     body: [
-      "Sou Allan Martins — Designer Gráfico e de Produto em Florianópolis. Crio marcas, interfaces e sistemas visuais que traduzem estratégia em experiências que as pessoas sentem.",
-      "Meu trabalho transita entre o ofício do design gráfico e a lógica do pensamento de produto. De eventos e associações a engenharia e varejo, ajudo organizações a esclarecer o que defendem e expressar isso com intenção — cada vez mais potencializado por fluxos com IA.",
+      "Designer gráfico e de produção baseado em Florianópolis, Brasil, que transforma conceitos de marca em materiais finalizados e prontos para uso em eventos e campanhas, trabalhando remotamente com equipes internacionais ou presencialmente na região.",
+      "Já produzi materiais para eventos com mais de 25.000 participantes e para marcas como Chevrolet e Nissan, além de trabalhos para a Empreende Brasil e a ADVB/SC. Como único designer da minha equipe, conduzo projetos da identidade visual até templates prontos para impressão e os adapto para redes sociais, apresentações e peças de grande formato.",
+      "O que eu faço: design de produção e arquivos prontos para impressão, identidade visual e consistência de marca, materiais para eventos (backdrops, banners, sinalização), adaptação de formatos para digital e impressão, materiais para redes sociais.",
+      "Ferramentas: Adobe Creative Suite (certificado Adobe em conteúdo com IA), Figma, ZBrush, Canva e IA generativa para acelerar a entrega sem perder qualidade. Também tenho experiência em motion e edição de vídeo (CapCut).",
+      "Graduações em Design (UNISUL) e Design de Produto (Anhembi Morumbi).",
+      "Aberto a posições remotas com marcas e agências internacionais, e a posições híbridas ou presenciais em Florianópolis.",
     ],
+    readMore: "Ler mais",
+    readLess: "Ler menos",
     pillarsTitle: "O que move o trabalho",
     pillars: [
       { title: "Design", text: "Tipografia, composição e sistemas feitos com cuidado obsessivo." },

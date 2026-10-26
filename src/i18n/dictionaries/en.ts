@@ -35,9 +35,15 @@ export const en = {
     eyebrow: "About",
     heading: "A designer at the intersection of creativity, technology and business.",
     body: [
-      "I'm Allan Martins — a Graphic and Product Designer based in Florianópolis, Brazil. I design brands, interfaces and visual systems that translate strategy into experiences people feel.",
-      "My work moves between the craft of graphic design and the logic of product thinking. From events and associations to engineering and retail, I help organisations clarify what they stand for and express it with intention — increasingly amplified by AI-assisted workflows.",
+      "Graphic and production designer based in Florianópolis, Brazil, turning brand concepts into polished, ready-to-use assets for events and campaigns, working remotely with international teams or on-site locally.",
+      "I’ve produced materials for events with 25,000+ attendees and for brands like Chevrolet and Nissan, plus work for Empreende Brasil and ADVB/SC. As the sole designer on my team, I take projects from visual identity to print-ready templates and adapt them across social media, presentations and large-format pieces.",
+      "What I do: production design and print-ready files, visual identity and brand consistency, event materials (backdrops, banners, signage), format adaptation for digital and print, social media assets.",
+      "Tools: Adobe Creative Suite (Adobe certified in AI content), Figma, ZBrush, Canva, and generative AI to speed up delivery without losing quality. I also have a motion and video editing background (CapCut).",
+      "Degrees in Design (UNISUL) and Product Design (Anhembi Morumbi).",
+      "Open to remote roles with international brands and agencies, and to hybrid or on-site roles in Florianópolis.",
     ],
+    readMore: "Read more",
+    readLess: "Read less",
     pillarsTitle: "What drives the work",
     pillars: [
       { title: "Design", text: "Typography, composition and systems crafted with obsessive care." },
