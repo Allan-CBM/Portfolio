@@ -2,6 +2,7 @@ import "../../globals.css";
 
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
+import { Analytics } from "@vercel/analytics/next";
 
 import { htmlLang, isLocale, locales, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
@@ -81,6 +82,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           </LeaveSiteProvider>
         </AppProvider>
         <div aria-hidden className="grain animate-grain" />
+        <Analytics />
       </body>
     </html>
   );
