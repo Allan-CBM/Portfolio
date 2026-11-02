@@ -4,6 +4,8 @@
 export const siteSettings = {
   name: "Allan Martins",
   shortName: "AM",
+  /** Public address used in Google results, link previews and the sitemap. Change it when the domain changes. */
+  url: "https://allanmartinsdesigns.vercel.app",
   links: {
     behance: "https://www.behance.net/AllanCarlosBM",
     linkedin: "https://www.linkedin.com/in/allancarlosbm/",

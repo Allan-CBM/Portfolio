@@ -28,6 +28,7 @@ Every text exists in **English and Portuguese**. `src/i18n/dictionaries/pt.ts` i
 | Hero text, buttons, all other labels | dictionaries → `hero`, `nav`, `contact`, `footer`… | |
 | Experience entries | `src/content/experience.ts` | Most recent first. Dates are `"YYYY-MM"`. Each text has `en` and `pt`. `intro` and `tools` are optional. |
 | Behance / LinkedIn links, contact email | `src/content/siteSettings.ts` | Leave `email` empty to hide every email link. |
+| Site address (domain) | `src/content/siteSettings.ts` → `url` | Used in Google results, link previews and the sitemap. |
 | Page title and description (Google, link previews) | dictionaries → `meta` | |
 | Profile photo | `public/images/allan.jpg` | Replace the file, same name. Portrait, face near the top (the card crops to 4:5 from the top). |
 | Behance card background | `public/images/behance-profile.jpg` | Replace the file, same name. About 1.9:1; the right side stays the most visible. |
@@ -59,14 +60,14 @@ None are required. Optional:
 
 | Variable | Purpose |
 |---|---|
-| `NEXT_PUBLIC_SITE_URL` | Public URL used in canonical links, Open Graph, the sitemap and JSON-LD. Set it when a custom domain is added. Without it, Vercel's production domain is used automatically. |
+| `NEXT_PUBLIC_SITE_URL` | Overrides `url` in `siteSettings.ts` (canonical links, Open Graph, the sitemap and JSON-LD). Usually not needed: just edit `siteSettings.ts`. |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Fallback contact email (currently unused; `siteSettings.ts` wins). |
 
 Copy `.env.example` to `.env.local` for local overrides. Never commit `.env.local`.
 
 ## Deploy
 
-The repo is connected to Vercel: every push to `main` deploys to production, every other branch gets a preview URL. When a custom domain is added in Vercel (Settings → Domains), set `NEXT_PUBLIC_SITE_URL` to it and redeploy.
+The repo is connected to Vercel: every push to `main` deploys to production, every other branch gets a preview URL. When the domain changes in Vercel (Settings → Domains), update `url` in `src/content/siteSettings.ts` and push.
 
 ## Folder structure
 
