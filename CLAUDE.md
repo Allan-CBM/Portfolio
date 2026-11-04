@@ -26,7 +26,6 @@ No automated tests. Verify with typecheck + lint + build, then look at the affec
 - `src/components/sections/` — home sections in order: Hero, About, FeaturedWork (one Behance card), Skills (marquee), Experience (accordion), Services (accordion), Process, Contact.
 - `src/components/providers/leave-site-provider.tsx` + `ui/external-link.tsx` — the leaving-site warning. Use `ExternalLink` **only for Behance**. LinkedIn is the main contact channel and must never show the warning.
 - Build must succeed with no environment variables. `siteUrl` resolves `NEXT_PUBLIC_SITE_URL` → `siteSettings.url` (when building on Vercel) → `http://localhost:3000`. Current domain: https://allanmartinsdesigns.vercel.app.
-- Copy voice: first person, plain and specific, like Allan talking. Avoid buzzwords ("transform ideas into impact", "elevate", "seamless"), stacked triads and em-dash flourishes.
 
 ## Content rules
 
