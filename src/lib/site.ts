@@ -27,11 +27,8 @@ export const site = {
   ],
   jobTitles: [
     "Graphic Designer",
-    "Product Designer",
-    "Creative Technologist",
-    "Visual Storyteller",
-    "Motion Designer",
     "Brand Designer",
+    "Motion Designer",
   ],
 } as const;
 

@@ -2,7 +2,7 @@ import type { Dictionary } from "./en";
 
 export const pt: Dictionary = {
   meta: {
-    title: "Allan Martins — Designer Gráfico & de Produto",
+    title: "Allan Martins — Designer Gráfico, de Marcas e Motion",
     description:
       "Designer gráfico e de produção em Florianópolis, Brasil: identidade visual, materiais para eventos, arquivos prontos para impressão e conteúdo para redes sociais de marcas e campanhas.",
   },

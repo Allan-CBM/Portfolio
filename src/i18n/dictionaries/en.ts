@@ -1,6 +1,6 @@
 export const en = {
   meta: {
-    title: "Allan Martins — Graphic & Product Designer",
+    title: "Allan Martins — Graphic, Brand & Motion Designer",
     description:
       "Graphic and production designer in Florianópolis, Brazil: visual identity, event materials, print-ready files and social media assets for brands and campaigns.",
   },

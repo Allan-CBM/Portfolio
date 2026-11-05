@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 
-export const alt = "Allan Martins — Graphic & Product Designer";
+export const alt = "Allan Martins — Graphic, Brand & Motion Designer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

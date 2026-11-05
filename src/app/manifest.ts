@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Allan Martins — Portfolio",
     short_name: "Allan Martins",
-    description: "Graphic Designer, Product Designer & Creative Technologist based in Florianópolis, Brazil.",
+    description: "Graphic, Brand & Motion Designer based in Florianópolis, Brazil.",
     start_url: "/",
     display: "standalone",
     background_color: "#050505",
